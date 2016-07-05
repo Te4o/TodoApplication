@@ -1,0 +1,21 @@
+<!--Scheduler Item (todo into the list)-->
+<table class="table table-hover table-bordered">
+	<tr class="show-row">
+
+	  <td width="4%">
+	  	<input type="checkbox" name="box" ng-model="deleted">
+	  </td>
+
+	  <td width="96%"> 
+	  	<div class="panel-heading custom">
+			<label ng-class="{strike: deleted}">{{data.name}}</label>
+		  	<div class="pull-right">
+		  	<button ng-click="save()" ng-if="vm.show" class="glyphicon-button glyphicon glyphicon-floppy-disk" aria-hidden="true"></button>
+	  		<button ng-click="edit()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-pencil" aria-hidden="true"> |</button>
+	  		<button ng-click="remove()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash" aria-hidden="true"></button>
+		  	</div>
+	  	</div>
+	  </td>
+
+	</tr>
+</table>

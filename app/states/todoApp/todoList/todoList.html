@@ -1,0 +1,32 @@
+<!--Scheduler List-->
+<div class="panel panel-primary">
+
+  <div class="panel-heading">
+
+    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+    <label class="header-label"> {{data.name}} </label>  
+          
+    <div class="pull-right">
+      <button ng-click="save()" ng-if="vm.show" class="glyphicon-button glyphicon glyphicon-floppy-disk hvr-pulse-grow"></button>
+      <button ng-click="edit()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-pencil hvr-pulse-grow">  |</button> 
+      <button ng-click="remove()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash hvr-pulse-grow"></button>
+    </div>
+
+  </div>
+
+  <div class="custom-input">
+
+    <button class="btn btn-success green-plus" type="submit" ng-click="addTodoIntoList(data.id, vm.name)">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+
+    <div class="input-group">
+      <input type="text" class="form-control" name="name" ng-model="vm.name" placeholder="Start typing here to create a task..."/>
+
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-success hvr-grow-shadow" ng-click="addTodoIntoList(data.id, vm.name)">Add Task</button>
+      </div>
+    </div>
+     <todo-item data="item" list="data" ng-repeat="item in data.todos"></todo-item>
+  </div>
+</div>
