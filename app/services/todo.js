@@ -5,18 +5,35 @@
         .module('app')
         .factory('todo', service);
 
-    service.$inject = ['$http'];
+    service.$inject = ['api'];
 
     var minLenghtOfName = 5;
     var listId = 1;
     var todoId = 1;
     var todoListArray = [];
-    function service($http) {
+
+    function service(api) {
+        api.get('myTodo')
+        .then(function (res) {
+            _.remove(todoListArray);
+            _.assign(todoListArray, res.data);
+            // todoListArray = res.data;
+        });
+
+        // api.post('myTodo', {id:3, name: 'Just a task', todos: []})
+        // .then(function (res) {
+        //     alertify.success('step by step..');
+        // });
+
+        
+
+
+
         return {
             todoLists: todoListArray,
             addList: addTodoList,
-            addATodo: addTodoIntoList
-            // remove: remove
+            addATodo: addTodoIntoList,
+            remove: remove
         };
 
         // Add TODO List
@@ -39,7 +56,10 @@
                     };
 
                     todoListArray.push(todoList);
-                    alertify.success('Successfully added Todo List :)');
+                    api.post('myTodo', todoList)
+                    .then(function(res){
+                        alertify.success('Successfully added Todo List :)');
+                    });
                 }
             }
         }
@@ -72,28 +92,32 @@
             }
         }
         
+        // Check if TODO List is duplicated
+        function isDuplicatedList(name) {
+        return _.some(todoListArray, function(todoList) { 
+                    return todoList.name == name; 
+                });
+        }
 
-            // Check if TODO List is duplicated
-            function isDuplicatedList(name) {
-            return _.some(todoListArray, function(todoList) { 
-                        return todoList.name == name; 
-                    });
-            }
+        // Check if todo in TODO List is duplicated
+        function isDuplicatedTodo(list, todoName) {
+        return _.some(list.todos, function(todo) { 
+                    return todo.name == todoName; 
+                });
+        }        
 
-            // Check if todo in TODO List is duplicated
-            function isDuplicatedTodo(list, todoName) {
-            return _.some(list.todos, function(todo) { 
-                        return todo.name == todoName; 
-                    });
-            }        
+        // Remove todo/todoList
+        function remove(list, id) {
+            var index = _.findIndex(list, function(obj) {
+                return obj.id == id; // find the index of todo list
+            });
+                list.splice(index, 1); // delete only one element on click ( for example: if set 1 to 2 -> two elements will be deleted ;) ) 
 
-            // Remove
-            // function remove(index) {
-            //     var item = items[index];
-            //     removeItem(item);
-            //     // items.splice(index, 1);
-            // }
-
+            api.del('myTodo/' + id)
+            .then(function(res){
+                alertify.success('deleted');
+            });
+        }
 
     }
 }(angular));

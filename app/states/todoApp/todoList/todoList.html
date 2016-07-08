@@ -9,7 +9,7 @@
     <div class="pull-right">
       <button ng-click="save()" ng-if="vm.show" class="glyphicon-button glyphicon glyphicon-floppy-disk hvr-pulse-grow"></button>
       <button ng-click="edit()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-pencil hvr-pulse-grow">  |</button> 
-      <button ng-click="remove()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash hvr-pulse-grow"></button>
+      <button ng-click="todo.remove(todo.todoLists, data.id)" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash hvr-pulse-grow"></button>
     </div>
 
   </div>
@@ -20,13 +20,18 @@
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
 
-    <div class="input-group">
-      <input type="text" class="form-control" name="name" ng-model="vm.name" placeholder="Start typing here to create a task..."/>
+    <form name="userForm" ng-submit="submitForm()" novalidate>
+      <div class="input-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+        <input type="text" class="form-control" name="name" ng-model="vm.name" required placeholder="Start typing here to create a task..."/>
+        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">This field is required.</p>
 
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-success hvr-grow-shadow" ng-click="addTodoIntoList(data.id, vm.name)">Add Task</button>
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-success hvr-grow-shadow" ng-click="addTodoIntoList(data.id, vm.name)" >Add Task</button>
+        </div>
+
       </div>
-    </div>
-     <todo-item data="item" list="data" ng-repeat="item in data.todos"></todo-item>
+    </form>
+
+    <todo-item data="item" list="data" ng-repeat="item in data.todos"></todo-item>
   </div>
 </div>

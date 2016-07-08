@@ -27,9 +27,11 @@
         $scope.save = save;
         $scope.edit = edit;
         $scope.remove = remove;
+        $scope.submitForm = submitForm;
 
         function addTodoIntoList() {
             todo.addATodo($scope.data.id, $scope.vm.name);
+            $scope.userForm.name.$pristine = true;
             $scope.vm.name = ''; //flush the field for name
         }
 
@@ -41,10 +43,19 @@
         function edit() {
             $scope.vm.show = true;
         }
-
+ 
         function remove() {
             alertify.error('Deleted!');
         }
+
+        function submitForm() {
+            // check to make sure the form is completely valid
+            if ($scope.userForm.$valid) {
+                alert('our form is amazing');
+            }
+        }
+
+
 
     }
 

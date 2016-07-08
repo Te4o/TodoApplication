@@ -12,7 +12,7 @@
 		  	<div class="pull-right">
 		  	<button ng-click="save()" ng-if="vm.show" class="glyphicon-button glyphicon glyphicon-floppy-disk" aria-hidden="true"></button>
 	  		<button ng-click="edit()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-pencil" aria-hidden="true"> |</button>
-	  		<button ng-click="remove()" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash" aria-hidden="true"></button>
+	  		<button ng-click="todo.remove(list.todos, data.id)" ng-if="!vm.show" class="glyphicon-button glyphicon glyphicon-trash" aria-hidden="true"></button>
 		  	</div>
 	  	</div>
 	  </td>

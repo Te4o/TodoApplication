@@ -30,6 +30,7 @@
 
     controller.$inject = ['$scope', 'todo', 'prompt', 'ngProgressFactory'];
     function controller($scope, todo, prompt, ngProgressFactory) {
+
         $scope.vm = {};
         $scope.listOfTodoLists = listOfTodoLists;
         $scope.todo = todo;

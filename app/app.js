@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app', ['ui.router','cgPrompt', 'ngProgress'])
+    angular.module('app', ['ui.router','cgPrompt', 'ngProgress', 'ngValid'])
     .config(config)
     .run(run);
 
