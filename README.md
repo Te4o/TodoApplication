@@ -13,4 +13,4 @@ Go in the repo and run: gulp
 
 This command will start the web server, compile your sass files and include the new js files in index.html
 
-![alt tag](https://drive.google.com/open?id=0B4aTLS3LBsFDVjBEVHhhMnlrM2s)
+![alt tag](https://drive.google.com/file/d/0B4aTLS3LBsFDVjBEVHhhMnlrM2s/view?usp=sharing)
