@@ -12,5 +12,3 @@
 Go in the repo and run: gulp
 
 This command will start the web server, compile your sass files and include the new js files in index.html
-
-![alt tag](https://www.dropbox.com/home/Todo%20Application?preview=1.png)
